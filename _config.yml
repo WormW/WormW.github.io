@@ -106,6 +106,7 @@ deploy:
   repo: https://github.com/WormW/WormW.github.io.git
   branch: gh-pages
 
+# search
 search:
   path: search.json
   field: post
