@@ -65,7 +65,7 @@ index_generator:
   per_page: 10
   order_by: -date
 
-sidebar-avatar: https://cdn.v2ex.com/gravatar/67de7a44872c4772b2838897a6cee124?s=200
+sidebar-avatar: /cdn.v2ex.com/gravatar/67de7a44872c4772b2838897a6cee124?s=200
 # Category & Tag
 default_category: uncategorized
 category_map:
