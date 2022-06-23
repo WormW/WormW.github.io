@@ -103,3 +103,9 @@ theme: landscape
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+theme: aircloud
+
+search:
+  path: search.json
+  field: post
