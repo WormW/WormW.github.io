@@ -13,7 +13,7 @@
 
     <title>
         
-        
+        网络协议复习-TCP与UDP - undefined
         
     </title>
 
@@ -59,7 +59,7 @@
     </div>
     <div class="contents" id="nav-content">
         <ul>
-            <li  class=active >
+            <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
                     <span>HOME</span>
@@ -100,6 +100,10 @@
         </ul>
     </div>
     
+        <div id="toc" class="toc-article">
+    
+</div>
+    
 </div>
 
 
@@ -125,96 +129,83 @@
     <div class="index-middle">
         <!-- Main Content -->
         
-<div class="post-preview-container" style="min-height: 720px">
-    
-    <div class="post-preview">
-        <div class="post-time">2022-06-24</div>
-        <div class="post-info">
-            <a href="https://wormw.github.io/2022/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%A4%8D%E4%B9%A0-%20TCP%E4%B8%8EUDP/">
-                <h3>
-                    网络协议复习-TCP与UDP
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#面试" title="面试">面试</a>
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#复习" title="复习">复习</a>
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#网络协议" title="网络协议">网络协议</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+
+<div class="post-container">
+    <div class="post-title">
+        网络协议复习-TCP与UDP
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2022-06-24</div>
-        <div class="post-info">
-            <a href="https://wormw.github.io/2022/06/24/%E9%9D%A2%E8%AF%95PHP-Day1/">
-                <h3>
-                    面试PHP-Day1
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#面试" title="面试">面试</a>
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#PHP" title="PHP">PHP</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-06-24 11:05:19</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#面试" title="面试">面试</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#复习" title="复习">复习</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#网络协议" title="网络协议">网络协议</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2022-06-24</div>
-        <div class="post-info">
-            <a href="https://wormw.github.io/2022/06/24/%E8%A3%81%E7%BB%8FDay1/">
-                <h3>
-                    裁经Day1
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#仲裁" title="仲裁">仲裁</a>
-                <span>/</span>
-                
-                
-            </p>
+    <div class="post-content ">
+        <ol>
+<li>TCP<ol>
+<li>超时重试<ol>
+<li>根据往返时间RTT计算超时重试时间-自适应重传算法</li>
+<li>超时一次时间加倍一次</li>
+<li>SACK 选择应答 TCP包头增加SACK ，接收端返回三个重复的ack，发送方立刻重发丢失包</li>
+</ol>
+</li>
+<li>流量控制<ol>
+<li>滑动窗口<ol>
+<li>避免包堆积</li>
+<li>接收方处理不过来时发送方不再发送</li>
+<li>发送方发送窗口探测数据包 调整窗口大小</li>
+</ol>
+</li>
+<li>拥塞控制<ol>
+<li>TCP BBR拥塞算法，寻找最大，但不占用缓存的发送速度</li>
+<li>传统算法在速度达到最大值时会因为中间设备缓存问题导致时延变大</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>特点<ol>
+<li>可靠交付</li>
+<li>面向字节流</li>
+<li>拥塞控制</li>
+<li>有状态服务</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>UDP<ol>
+<li>结构简单</li>
+<li>不建立连接</li>
+<li>不做拥塞控制</li>
+<li>适合做广播</li>
+</ol>
+</li>
+</ol>
+
+        
+        <br />
+        <div id="comment-container">
         </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2022-06-23</div>
-        <div class="post-info">
-            <a href="https://wormw.github.io/2022/06/23/hello-world/">
-                <h3>
-                    Hello World
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
 </div>
-<ul class="pager">
-    
-    
-</ul>
 
     </div>
 </div>
@@ -254,7 +245,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="//cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
