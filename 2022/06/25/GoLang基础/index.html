@@ -13,7 +13,7 @@
 
     <title>
         
-        网络协议复习-HTTP - undefined
+        GoLang基础 - undefined
         
     </title>
 
@@ -101,7 +101,7 @@
     </div>
     
         <div id="toc" class="toc-article">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP"><span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTPS"><span class="toc-text">HTTPS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#QUIC"><span class="toc-text">QUIC</span></a></li></ol>
+    
 </div>
     
 </div>
@@ -133,21 +133,18 @@
 
 <div class="post-container">
     <div class="post-title">
-        网络协议复习-HTTP
+        GoLang基础
     </div>
 
     <div class="post-meta">
-        <span class="attr">Post：<span>2022-06-24 14:37:11</span></span>
+        <span class="attr">Post：<span>2022-06-25 17:08:36</span></span>
         
         <span class="attr">Tags：/
         
-        <a class="tag" href="/tags/#HTTP" title="HTTP">HTTP</a>
+        <a class="tag" href="/tags/#golang" title="golang">golang</a>
         <span>/</span>
         
-        <a class="tag" href="/tags/#HTTPS" title="HTTPS">HTTPS</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#QUIC" title="QUIC">QUIC</a>
+        <a class="tag" href="/tags/#基础" title="基础">基础</a>
         <span>/</span>
         
         
@@ -157,38 +154,20 @@
 </span>
     </div>
     <div class="post-content ">
-        <h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><ol>
-<li>基于TCP</li>
-<li>2.0版本对包头进行压缩<ol>
-<li>1.1多请求串行</li>
-<li>2.0请求并行</li>
+        <ol>
+<li>rune是别称类型，int32</li>
+<li>byte是别称类型，uint8</li>
+<li>切片翻倍扩容</li>
+<li>子切片发生扩容后不再与原数组共享内存</li>
+<li>switch不需要break</li>
+<li>http库<ol>
+<li>body只能读一次</li>
+<li>getBody可以读多次，但是原生的http.Request是nil</li>
+<li>header会自动转换大小写</li>
+<li>form要先parseForm</li>
 </ol>
 </li>
-<li>keep-alive 保持连接不会立刻中断tcp连接，请求复用</li>
-</ol>
-<h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><ol>
-<li>https的通信流程是为了通过非对称加密来生成对称加密使用的参数</li>
-<li>流程<ol>
-<li>客户端生成随机数</li>
-<li>服务端返回随机数</li>
-<li>审核服务端证书</li>
-<li>审核客户端证书</li>
-<li>生成pre-master</li>
-<li>服务端+客户端+pre-master 算出对称密钥</li>
-<li>测试参数- c-&gt;s</li>
-<li>测试参数- s-&gt;c</li>
-<li>完成</li>
-</ol>
-</li>
-<li>包内包含时间戳和随机数，确保不会被重放和篡改</li>
-</ol>
-<h1 id="QUIC"><a href="#QUIC" class="headerlink" title="QUIC"></a>QUIC</h1><ol>
-<li>HTTP3.0</li>
-<li>基于udp</li>
-<li>自定义连接机制</li>
-<li>自定义重传机制</li>
-<li>无阻塞的多路复用</li>
-<li>自定义流量控制</li>
+<li></li>
 </ol>
 
         
