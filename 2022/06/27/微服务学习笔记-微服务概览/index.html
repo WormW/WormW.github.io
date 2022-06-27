@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        微服务学习笔记-微服务概览 - undefined
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="//cdn.v2ex.com/gravatar/67de7a44872c4772b2838897a6cee124?s=200" />
+        </div>
+        <div class="name">
+            <i>WormW</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>HOME</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>TAGS</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>ARCHIVES</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>COLLECT</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>ABOUT</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>SEARCH</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">search</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        微服务学习笔记-微服务概览
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-06-27 23:05:20</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#微服务" title="微服务">微服务</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <ol>
+<li>微服务发展历程</li>
+<li>单体架构<ol>
+<li>使用模块化逻辑划分</li>
+<li>最终打包成大型单体</li>
+<li>化繁为简分而治之</li>
+</ol>
+</li>
+<li>微服务起源<ol>
+<li>特点<ol>
+<li>SOA面向服务的架构模式</li>
+<li><strong>小即是美</strong></li>
+<li><strong>单一指责</strong></li>
+<li><strong>尽可能早地创建原型</strong></li>
+<li><strong>可移植性比效率更重要</strong></li>
+</ol>
+</li>
+<li>运维和开发本质上对于上线是有冲突的，运维需要保持尽量的稳定，开发需要尽快的上线，对于单体架构存在更大的冲突，上线日会造成比较大的麻烦</li>
+<li>要具备通信的通用性</li>
+<li>定义<ol>
+<li>原子服务（拆分了DB增加了系统的整体吞吐性能）</li>
+<li>独立进程</li>
+<li>隔离部署（一个物理机也可以部署多个隔离pod）（对部署多个微服务 降低crash影响）</li>
+<li>去中心化服务治理</li>
+<li>基础设施建设、复杂度高（缺点）</li>
+</ol>
+</li>
+<li>不足<ol>
+<li>增加了固有的复杂性，需要处理服务不可用和服务传递速度慢的问题</li>
+<li>分布式事务</li>
+<li>测试单一应用变复杂</li>
+<li>服务见的依赖，导致单一应用影响多个服务</li>
+<li>运维基础设施挑战高</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>组件服务化（多个微服务组成一个usercase）<ol>
+<li>kit:需要一套微服务基础库（框架内包）</li>
+<li>service: 由 业务代码+kit+第三方依赖组成</li>
+<li>RPC + message queue：轻量级通讯</li>
+</ol>
+</li>
+<li>去中心化<ol>
+<li>数据去中心化（缓存数据隔离）</li>
+<li>治理去中心化（避免中心热点）</li>
+<li>技术去中心化（不绑定语言）</li>
+</ol>
+</li>
+<li>基础设施自动化<ol>
+<li>cicd：gitlab +gitlab hooks +kubernetes</li>
+<li>Testing：测试环境、单元测试、API自动化测试</li>
+<li>在线运行时：kubernetes，以及一系列prometheus、ELK、control panel</li>
+</ol>
+</li>
+<li>可用性&amp;兼容性设计<ol>
+<li>Design For Failure</li>
+<li>隔离</li>
+<li>超时控制</li>
+<li>负载保护</li>
+<li>限流</li>
+<li>降级</li>
+<li>重试</li>
+<li>负载均衡</li>
+</ol>
+</li>
+<li>发送时保守，接受时开放【伯斯塔尔法则】尽量少传数据，接收时可以接受冗余</li>
+</ol>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="//cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+</html>
