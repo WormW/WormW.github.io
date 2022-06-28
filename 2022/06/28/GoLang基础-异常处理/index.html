@@ -13,7 +13,7 @@
 
     <title>
         
-        
+        GoLang基础-异常处理 - undefined
         
     </title>
 
@@ -59,7 +59,7 @@
     </div>
     <div class="contents" id="nav-content">
         <ul>
-            <li  class=active >
+            <li >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
                     <span>HOME</span>
@@ -100,6 +100,10 @@
         </ul>
     </div>
     
+        <div id="toc" class="toc-article">
+    
+</div>
+    
 </div>
 
 
@@ -125,100 +129,115 @@
     <div class="index-middle">
         <!-- Main Content -->
         
-<div class="post-preview-container" style="min-height: 720px">
-    
-    <div class="post-preview">
-        <div class="post-time">2022-06-24</div>
-        <div class="post-info">
-            <a href="https://wormw.github.io/2022/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%A4%8D%E4%B9%A0-TCP%E4%B8%8EUDP/">
-                <h3>
-                    网络协议复习-TCP与UDP
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#面试" title="面试">面试</a>
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#复习" title="复习">复习</a>
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#网络协议" title="网络协议">网络协议</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+
+<div class="post-container">
+    <div class="post-title">
+        GoLang基础-异常处理
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2022-06-24</div>
-        <div class="post-info">
-            <a href="https://wormw.github.io/2022/06/24/%E9%9D%A2%E8%AF%95PHP-Day1/">
-                <h3>
-                    面试PHP-Day1
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#面试" title="面试">面试</a>
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#PHP" title="PHP">PHP</a>
-                <span>/</span>
-                
-                
-            </p>
-        </div>
+
+    <div class="post-meta">
+        <span class="attr">Post：<span>2022-06-28 22:29:23</span></span>
+        
+        <span class="attr">Tags：/
+        
+        <a class="tag" href="/tags/#golang" title="golang">golang</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#基础" title="基础">基础</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">Visit：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2022-06-24</div>
-        <div class="post-info">
-            <a href="https://wormw.github.io/2022/06/24/%E8%A3%81%E7%BB%8FDay1/">
-                <h3>
-                    裁经Day1
-                </h3>
-            </a>
-            <p>
-                
-                <span>/</span>
-                
-                <a class="tag" href="/tags/#仲裁" title="仲裁">仲裁</a>
-                <span>/</span>
-                
-                
-            </p>
+    <div class="post-content ">
+        <ol>
+<li><p>Error</p>
+<ol>
+<li>Errors.New返回的是内存地址，为了避免直接比较时出现值的相等</li>
+<li>其他语言的异常还是处理机制，还是向上继续抛出</li>
+<li>golang的panic是真正的中断</li>
+<li>不要滥用二义性</li>
+<li>不要滥用panic 与recover</li>
+<li>不需要区分error和exception的语义了【很好</li>
+<li>Error are values</li>
+</ol>
+</li>
+<li><p>异常类型</p>
+<ol>
+<li>预定义的特定错误，sentinel error 哨兵错误<ol>
+<li>不灵活的错误处理策略</li>
+<li>不依赖检查error.Error的输出，不要使用Error的值作为方法判定，只做日志</li>
+<li>增加API的公共部分，要暴露错误</li>
+<li>在两个包之间创建了依赖（错误之间的依赖）</li>
+<li>结论：尽可能避免sentinel error</li>
+</ol>
+</li>
+<li>Error types 自定义error<ol>
+<li>os.PathError</li>
+<li>需要使用switch 和类型断言(.(type))</li>
+<li>会导致自己的异常变为public，和调用者产生强耦合</li>
+</ol>
+</li>
+<li>Opaque errors 不透明错误<ol>
+<li>对于不关心细节的调用方直接返回error</li>
+<li>对于需要细节的调用方，使用暴露函数进行类型转换判定返回细节</li>
+</ol>
+</li>
+<li>Wrap Error<ol>
+<li>错误原则<ol>
+<li>日志记录与错误无关且对调试没有帮助的信息被视为噪音</li>
+<li>错误要被日志记录</li>
+<li>应用程序处理错误，保证100%完整性</li>
+<li>之后不再报告当前错误</li>
+</ol>
+</li>
+<li>错误处理<ol>
+<li>和其他库协作时考虑errors.Wrap或者errors.Wrapf</li>
+<li>直接返回错误，不要每个地方都打日志</li>
+<li>程序的顶部或者goroutine顶部 %+v 记录日志</li>
+<li>errors.Cause获取root error 再和sentinel error</li>
+<li>业务应该wrap，但是基础库不应该wrap</li>
+<li>处理不了的错误带上足够的信息向上返回</li>
+<li>已经处理过的错误（降级处理），不应该继续向上抛出</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>异常处理 handling error</p>
+<ol>
+<li>结构体包装错误和主流程（减少err!&#x3D;nil）</li>
+<li>fmt.Errorf二次包装error（sentinel errors或者type assertions（error types的类型断言）不兼容 ）</li>
+<li>错误只处理一次</li>
+</ol>
+</li>
+<li><p>Unwrap递归寻找最终的底层error</p>
+<ol>
+<li>errors.Is</li>
+<li>errors.As</li>
+<li>也可以通过自定义实现Is判定</li>
+</ol>
+</li>
+<li><p>fmt.Errorf %w 包装错误</p>
+</li>
+<li><p>pkg errors的优势还是堆栈信息的保留</p>
+</li>
+</ol>
+
+        
+        <br />
+        <div id="comment-container">
         </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
     </div>
-    
-    <div class="post-preview">
-        <div class="post-time">2022-06-23</div>
-        <div class="post-info">
-            <a href="https://wormw.github.io/2022/06/23/hello-world/">
-                <h3>
-                    Hello World
-                </h3>
-            </a>
-            <p>
-                
-            </p>
-        </div>
-    </div>
-    
 </div>
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/">&larr; Newer Posts</a>
-    </li>
-    
-    
-</ul>
 
     </div>
 </div>
@@ -258,7 +277,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="//cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
