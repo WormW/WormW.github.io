@@ -13,7 +13,7 @@
 
     <title>
         
-        GoLang基础-并发编程 - undefined
+        
         
     </title>
 
@@ -59,7 +59,7 @@
     </div>
     <div class="contents" id="nav-content">
         <ul>
-            <li >
+            <li  class=active >
                 <a href="/">
                     <i class="iconfont icon-shouye1"></i>
                     <span>主页</span>
@@ -100,10 +100,6 @@
         </ul>
     </div>
     
-        <div id="toc" class="toc-article">
-    
-</div>
-    
 </div>
 
 
@@ -129,86 +125,31 @@
     <div class="index-middle">
         <!-- Main Content -->
         
-
-
-<div class="post-container">
-    <div class="post-title">
-        GoLang基础-并发编程
-    </div>
-
-    <div class="post-meta">
-        <span class="attr">发布于：<span>2022-06-29 14:58:53</span></span>
-        
-        <span class="attr">标签：/
-        
-        <a class="tag" href="/tags/#golang" title="golang">golang</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#基础" title="基础">基础</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#goroutine" title="goroutine">goroutine</a>
-        <span>/</span>
-        
-        
-        </span>
-        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
-</span>
-</span>
-    </div>
-    <div class="post-content ">
-        <ol>
-<li>并发编程<ol>
-<li>channel</li>
-<li>goroutine</li>
-</ol>
-</li>
-<li>进程和线程<ol>
-<li>进程从一个线程开始（主线程）</li>
-<li>主线程可以启动更多的线程</li>
-<li>线程可以启动更多的线程</li>
-</ol>
-</li>
-<li>goroutines和并行编程<ol>
-<li>并发不是并行 concurrency is not parallelism</li>
-<li>在不同逻辑处理器上运行，才是并行</li>
-<li>runtime.GOMAXPROCS</li>
-</ol>
-</li>
-<li>如果你的goroutine在从另一个goroutine获得结果前无法取得进展，那么自己去做比用go func更简单</li>
-<li>坏的操作 需要等待goroutine返回其启动器所需的大量状态跟踪和chan操作</li>
-<li>listDirectory如果返回channel的话回导致无法关闭，并且channel具备了二义性</li>
-<li>listDirectory(dir string,fn func(string))</li>
-<li>将异步执行函数的决定权交给该函数的调用方</li>
-<li>内部不要随便隐藏goroutine</li>
-<li>goroutine内使用chan要慎重，可能会导致卡住泄漏</li>
-<li>chan的阻塞可能会导致泄漏</li>
-<li>使用goroutine前，确定 如何结束 还有什么时候结束</li>
-<li>场景：启动两个server<ol>
-<li>log.Fatal 调用了os.exit不建议使用</li>
-<li>解决：<ol>
-<li>传入stop用chan 用来处理失败后逻辑</li>
-<li>done负责开始监听stop</li>
-<li>监听到stop后关闭stop</li>
-<li>然后chan对应执行stop后逻辑</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>使用errgroup进行生命周期的管理+function optionals 进行开发</li>
-<li>将启动goroutine的权利交给外部，内部尽量去通过chan处理内部间的逻辑</li>
-<li>将关闭chan交给拥有者，确保没人写再关闭</li>
-</ol>
-
-        
-        <br />
-        <div id="comment-container">
+<div class="post-preview-container" style="min-height: 720px">
+    
+    <div class="post-preview">
+        <div class="post-time">2022-06-23</div>
+        <div class="post-info">
+            <a href="https://wormw.github.io/2022/06/23/hello-world/">
+                <h3>
+                    Hello World
+                </h3>
+            </a>
+            <p>
+                
+            </p>
         </div>
-        <div id="disqus_thread"></div>
-        <div id="lv-container"></div>
-        <div class="giscus"></div>
     </div>
+    
 </div>
+<ul class="pager">
+    
+    <li class="previous">
+        <a href="/page/2/">&larr; Newer Posts</a>
+    </li>
+    
+    
+</ul>
 
     </div>
 </div>
@@ -248,7 +189,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = true
+    window.isPost = false
 </script>
 <script src="//cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 

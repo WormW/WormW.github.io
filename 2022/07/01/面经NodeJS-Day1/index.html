@@ -13,7 +13,7 @@
 
     <title>
         
-        GoLang基础-并发编程 - undefined
+        面经NodeJS-Day1 - undefined
         
     </title>
 
@@ -133,21 +133,18 @@
 
 <div class="post-container">
     <div class="post-title">
-        GoLang基础-并发编程
+        面经NodeJS-Day1
     </div>
 
     <div class="post-meta">
-        <span class="attr">发布于：<span>2022-06-29 14:58:53</span></span>
+        <span class="attr">发布于：<span>2022-07-01 00:32:55</span></span>
         
         <span class="attr">标签：/
         
-        <a class="tag" href="/tags/#golang" title="golang">golang</a>
+        <a class="tag" href="/tags/#面试" title="面试">面试</a>
         <span>/</span>
         
-        <a class="tag" href="/tags/#基础" title="基础">基础</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#goroutine" title="goroutine">goroutine</a>
+        <a class="tag" href="/tags/#NodeJS" title="NodeJS">NodeJS</a>
         <span>/</span>
         
         
@@ -158,46 +155,26 @@
     </div>
     <div class="post-content ">
         <ol>
-<li>并发编程<ol>
-<li>channel</li>
-<li>goroutine</li>
+<li>初创公司，做类CRM产品</li>
+<li>流程<ol>
+<li>先给了一个考勤系统设计题</li>
+<li>设计实体结构和关联画er图（实际没让画图）给了半小时</li>
+<li>直接撸了一套多租户多场景多考勤规则的实体 用了十来分钟</li>
+<li>之后进入面试流程</li>
 </ol>
 </li>
-<li>进程和线程<ol>
-<li>进程从一个线程开始（主线程）</li>
-<li>主线程可以启动更多的线程</li>
-<li>线程可以启动更多的线程</li>
+<li>redis的数据类型</li>
+<li>redis 的zset set 跳跃表都聊了一点，跳跃表没答出来，但是面试官提词之后想起来了，但是感觉面试官说的有点问题</li>
+<li>mysql的索引，聚簇索引 非聚簇索引，回表，索引覆盖（索引覆盖忘了</li>
+<li>innodb myisam的区别，索引，锁级别，事务，mvcc，数据结构（聊的都比较浅比较简单</li>
+<li>做了个扑克判断顺子的题，（写出了一段看着有小bug但是实际能跑的代码，后来把bug改了，用PHP写的</li>
+<li>又聊了一些CRM业务流程，结构设计，还有之前工作中的一些事情</li>
 </ol>
-</li>
-<li>goroutines和并行编程<ol>
-<li>并发不是并行 concurrency is not parallelism</li>
-<li>在不同逻辑处理器上运行，才是并行</li>
-<li>runtime.GOMAXPROCS</li>
-</ol>
-</li>
-<li>如果你的goroutine在从另一个goroutine获得结果前无法取得进展，那么自己去做比用go func更简单</li>
-<li>坏的操作 需要等待goroutine返回其启动器所需的大量状态跟踪和chan操作</li>
-<li>listDirectory如果返回channel的话回导致无法关闭，并且channel具备了二义性</li>
-<li>listDirectory(dir string,fn func(string))</li>
-<li>将异步执行函数的决定权交给该函数的调用方</li>
-<li>内部不要随便隐藏goroutine</li>
-<li>goroutine内使用chan要慎重，可能会导致卡住泄漏</li>
-<li>chan的阻塞可能会导致泄漏</li>
-<li>使用goroutine前，确定 如何结束 还有什么时候结束</li>
-<li>场景：启动两个server<ol>
-<li>log.Fatal 调用了os.exit不建议使用</li>
-<li>解决：<ol>
-<li>传入stop用chan 用来处理失败后逻辑</li>
-<li>done负责开始监听stop</li>
-<li>监听到stop后关闭stop</li>
-<li>然后chan对应执行stop后逻辑</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>使用errgroup进行生命周期的管理+function optionals 进行开发</li>
-<li>将启动goroutine的权利交给外部，内部尽量去通过chan处理内部间的逻辑</li>
-<li>将关闭chan交给拥有者，确保没人写再关闭</li>
+<p>update:</p>
+<ol>
+<li>第二天通知一面过了</li>
+<li>说后续有CTO一轮</li>
+<li>问我就职意向，回答要对比offer，不知道还给不给我第二轮和offer</li>
 </ol>
 
         
