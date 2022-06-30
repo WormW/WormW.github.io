@@ -13,7 +13,7 @@
 
     <title>
         
-        GoLang基础-内存模型 - undefined
+        GoLang基础-Channel - undefined
         
     </title>
 
@@ -133,11 +133,11 @@
 
 <div class="post-container">
     <div class="post-title">
-        GoLang基础-内存模型
+        GoLang基础-Channel
     </div>
 
     <div class="post-meta">
-        <span class="attr">Post：<span>2022-06-29 16:26:15</span></span>
+        <span class="attr">Post：<span>2022-06-30 17:17:45</span></span>
         
         <span class="attr">Tags：/
         
@@ -145,12 +145,6 @@
         <span>/</span>
         
         <a class="tag" href="/tags/#基础" title="基础">基础</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#内存模型" title="内存模型">内存模型</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#memory model" title="memory model">memory model</a>
         <span>/</span>
         
         
@@ -161,23 +155,25 @@
     </div>
     <div class="post-content ">
         <ol>
-<li>为了保证goroutine读取串行化，需要使用channel或者同步原语，比如sync或者sync&#x2F;atomic，mutex</li>
-<li>happen-before<ol>
-<li>同一个goroutine中的读写顺序是按照程序中的顺序执行的</li>
-<li>不同goroutine中的可能看到不同的执行顺序 </li>
-<li>内存重排 memory recordering</li>
-<li>抚平内核内存硬盘之间的宿绿茶 l1 l2 l3 cache store buffer</li>
-<li>由于store buffer（类似数据还在缓存，没能读到，直接从memory里读取）</li>
-<li>通过barrier或者fence 指令 保证类似锁的机制</li>
-<li>单个goroutine中没有并发</li>
-<li>变量v的零值初始化在内存模型中表现的与写操作相同</li>
-<li>对大于single machine word的变量的读写操作表现的像以不确定顺序对多个single machine word的变量的操作</li>
-<li>sync.Once是一种全局的类似singleflight的机制，但是singleflight的粒度更低，通过key去控制调用的请求</li>
-<li>需要用锁的机制保证先行发生，即按照正确的语义去控制变量的写</li>
-<li>在goroutine的嵌套中对于非原子化的赋值要慎重（主要针对goroutine共享变量或者潜逃goroutine），可能会导致取值异常</li>
+<li>channel是类型安全的消息队列</li>
+<li>无缓冲通道保证同步，会双向阻塞<ol>
+<li>receive先于send发生</li>
+<li>本质上会有比较多的goroutine唤醒</li>
 </ol>
 </li>
-<li>谨慎使用并发共享数据，尽量通过channel或者原子加锁对超过single machine word的赋值处理</li>
+<li>有缓冲通道在缓存满之前，可以直接继续执行，满了之后才会阻塞<ol>
+<li>send先于receive发生</li>
+<li>buffer再达到某个值之前是越大越好的，但并不能无限制变大</li>
+</ol>
+</li>
+<li>cancellation<ol>
+<li>close先于receive发生（类似buffered）</li>
+</ol>
+</li>
+<li>fan in ,fan out</li>
+<li>pipeline</li>
+<li>chan关闭后还是可以接收数据</li>
+<li>chan主要是用于任务分发或者全局统一的流式处理，比如全局日志写入，类似pipeline的效果</li>
 </ol>
 
         

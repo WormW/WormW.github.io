@@ -13,7 +13,7 @@
 
     <title>
         
-        GoLang基础-内存模型 - undefined
+        GoLang基础-Sync - undefined
         
     </title>
 
@@ -133,11 +133,11 @@
 
 <div class="post-container">
     <div class="post-title">
-        GoLang基础-内存模型
+        GoLang基础-Sync
     </div>
 
     <div class="post-meta">
-        <span class="attr">Post：<span>2022-06-29 16:26:15</span></span>
+        <span class="attr">Post：<span>2022-06-30 00:22:01</span></span>
         
         <span class="attr">Tags：/
         
@@ -145,12 +145,6 @@
         <span>/</span>
         
         <a class="tag" href="/tags/#基础" title="基础">基础</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#内存模型" title="内存模型">内存模型</a>
-        <span>/</span>
-        
-        <a class="tag" href="/tags/#memory model" title="memory model">memory model</a>
         <span>/</span>
         
         
@@ -161,23 +155,77 @@
     </div>
     <div class="post-content ">
         <ol>
-<li>为了保证goroutine读取串行化，需要使用channel或者同步原语，比如sync或者sync&#x2F;atomic，mutex</li>
-<li>happen-before<ol>
-<li>同一个goroutine中的读写顺序是按照程序中的顺序执行的</li>
-<li>不同goroutine中的可能看到不同的执行顺序 </li>
-<li>内存重排 memory recordering</li>
-<li>抚平内核内存硬盘之间的宿绿茶 l1 l2 l3 cache store buffer</li>
-<li>由于store buffer（类似数据还在缓存，没能读到，直接从memory里读取）</li>
-<li>通过barrier或者fence 指令 保证类似锁的机制</li>
-<li>单个goroutine中没有并发</li>
-<li>变量v的零值初始化在内存模型中表现的与写操作相同</li>
-<li>对大于single machine word的变量的读写操作表现的像以不确定顺序对多个single machine word的变量的操作</li>
-<li>sync.Once是一种全局的类似singleflight的机制，但是singleflight的粒度更低，通过key去控制调用的请求</li>
-<li>需要用锁的机制保证先行发生，即按照正确的语义去控制变量的写</li>
-<li>在goroutine的嵌套中对于非原子化的赋值要慎重（主要针对goroutine共享变量或者潜逃goroutine），可能会导致取值异常</li>
+<li><p>使用锁保护happens before需要使用锁保护</p>
+</li>
+<li><p>尽量使用chan通信（但是chan底层也是通过互斥锁实现，只是更加简洁）</p>
+</li>
+<li><p>data race</p>
+<ol>
+<li>go build -race</li>
+<li>多个goroutine共享全局变量时会出现的问题</li>
+<li>data race的判断要根据 原子性 和 可见性</li>
 </ol>
 </li>
-<li>谨慎使用并发共享数据，尽量通过channel或者原子加锁对超过single machine word的赋值处理</li>
+<li><p>interface底层时2个machine word</p>
+</li>
+<li><p>map是原子赋值，但是也存在data race</p>
+</li>
+<li><p>**<code>atomic.Value</code>**可以解决赋值的多步骤问题，本质上是通过将两步赋值拆开，检查第二步的赋值结果来验证赋值成功，在成功前不返回结果，隐藏中间态</p>
+</li>
+<li><p>也可以使用RWMutex锁，读多写少时 atomic.value效率会高很多</p>
+</li>
+<li><p>copy on write-不修改老对象，复制新对象，然后修改，最后替换</p>
+</li>
+<li><p>Mutex锁实现</p>
+<ol>
+<li>barging ，锁释放后会唤醒第一个等待者，但是拿到锁的人可能是第一个等待着或者第一个请求者</li>
+<li>handsoff，等待等待者被唤醒后交接锁，释放锁的实际会更晚，降低了吞吐量</li>
+<li>spinning，自选锁的等待着会一直循环查询，而不会进入parking状态，也不会有被唤醒的过程</li>
+<li>go1.8中使用barging和spining结合地方方式，试图获取已经被持有的锁事，如果本地队列位空并且P的数量大于1，goroutine会自旋几次（用一个P旋转会阻塞程序），尝试几次后进入park状态（用cpu换时间）</li>
+<li>go1.9中增加了饥饿模式，释放时会触发handoff，将等待超过1ms的goroutine（有界等待）标记为饥饿，unlock方法会handoff把锁交给第一个等待者，饥饿模式下自旋会被停用，因为传入goroutines没有机会获取下一个等待着保留的锁（自旋一直在抢占锁）</li>
+</ol>
+</li>
+<li><p>errgroup原理，底层通过waitgroup实现，</p>
+<ol>
+<li><p>主要是取出了waitgroup中没有拿到的错误值</p>
+</li>
+<li><p>返回错误值之后，会填充到结构体的err属性里，可以通过wait获取</p>
+</li>
+<li><p>通过sem 这个chan进行限流</p>
+</li>
+<li><p>具体的内部实现在Go函数&#x2F;TryGo函数</p>
+<ol>
+<li>go会直接往sem里塞入（无返回值）&#x2F;TryGo会（有返回值）如果超过限流直接返回false</li>
+<li>内部使用wg.Add wg.Done控制状态</li>
+<li>使用errOnce.Do做一个原子执行，内部使用atomic实现</li>
+<li>只有第一次报错的goroutine可以调用成功</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>sync.Pool</p>
+<ol>
+<li><p>pool内的东西可能会被随时回收，所以不能放状态的连接</p>
+</li>
+<li><p>应该尽量放入无状态数据</p>
+</li>
+<li><p>go1.13引入了victim cache，会将pool内数据拷贝一份，避免gc晴空，即使没有饮用的内容也可以保留最多两轮GC</p>
+</li>
+<li><p>使用pool减少重复构建某些重用结构体</p>
+<ol>
+<li><p>具体使用gin的coutext</p>
+<ol>
+<li><pre><code>pool.Get().(*Context)
+</code></pre>
+</li>
+</ol>
+</li>
+<li><p>fmt.printf newPrinter</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
 </ol>
 
         
